@@ -2,9 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_catatlog/utils/routes.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+   String name = "";
+  @override
+  
+  void changeName(String value){
+    setState(() {
+      name=value;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -18,9 +31,9 @@ class LoginPage extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            const Text(
-              "Welcome!!",
-              style: TextStyle(
+             Text(
+              "Welcome $name !!",
+              style: const TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
               ),
@@ -40,6 +53,7 @@ class LoginPage extends StatelessWidget {
                       hintText: "Enter Username",
                       labelText: "Username",
                     ),
+                    onChanged: (value) => changeName(value),
                   ),
                   TextFormField(
                     obscureText: true,
